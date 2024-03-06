@@ -6,9 +6,6 @@ import pandas as pd
 import numpy as np
 from numpy import asarray
 
-#19.6
-#27.3
-
 def metadata ():
     exifdata = image.getexif()
     for tag_id in exifdata:
@@ -30,7 +27,7 @@ def encontrar_ponto_medio(img):
         ponto_medio = (largura // 2, altura // 2)
         return ponto_medio
 
-base = "FLIR_20240228_053459_349" 
+base = "" 
 ext = ".jpg"
 imagem_base = base + ext
 
@@ -40,7 +37,6 @@ metadata()
 imagem_base = redimensionar()
 ponto_medio = encontrar_ponto_medio(imagem_base)
 
-#converte as tonalidades para um array
 imagem_acinzentada = cv2.imread(imagem_base, cv2.IMREAD_ANYDEPTH)
 
 tons_cinza = asarray(imagem_acinzentada)
@@ -63,7 +59,7 @@ planilha = pd.read_excel(dest)
 
 for coluna in planilha.columns:
     for valor in planilha[coluna]:
-        if valor > 27.3 or valor < 19.6:
+        if valor > tmax or valor < tmin:
             print("Error")
 
 

@@ -4,22 +4,19 @@ def is_radiometric_jpeg(img_path):
     img = Image.open(img_path)
     
     if img.mode == "L":
-        depth = 8  # Imagem em tons de cinza
+        depth = 8  
     elif img.mode == "RGB":
-        depth = 24  # Imagem colorida
+        depth = 24 
     else:
         depth = None
     
     return depth
 
-# Caminho para a imagem
-sensibilidade_termica = 0.15 #em graus ou 150mk
-img_path = "1.jpeg"
 
-# Verifica se a imagem é radiométrica
+img_path = ""
+
 depth = is_radiometric_jpeg(img_path)
 
-# Exibe o resultado
 if depth is not None:
     print(f"A profundidade de bits da imagem é {depth}.")
     if depth > 8:
